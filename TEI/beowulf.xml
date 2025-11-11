@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beowulf>
+  <metadata>
+    <title>Beowulf</title>
+    <author>Unknown</author>
+    <language>Old English</language>
+    <source>Cotton Vitellius A.xv (British Library)</source>
+    <period>Early Medieval (c. 8th century)</period>
+  </metadata>
+  
+  <poem>
+    <part number="1" title="Grendel">
+      <section number="1">
+        <line number="1">Hwæt. We Gar-dena in geardagum,</line>
+        <line number="2">þeodcyninga, þrym gefrunon,</line>
+        <line number="3">hu ða æþelingas ellen fremedon.</line>
+        <line number="4">Oft Scyld Scefing sceaþena þreatum,</line>
+        <line number="5">monegum mægþum, meodosetla ofteah,</line>
+        <line number="6">egsode eorlas. Syððan ærest wearð</line>
+        <line number="7">feasceaft funden, he þæs frofre gebad,</line>
+        <line number="8">weox under wolcnum, weorðmyndum þah,</line>
+        <line number="9">oðþæt him æghwylc þara ymbsittendra</line>
+        <line number="10">ofer hronrade hyran scolde,</line>
+      </section>
+      
+      <section number="2">
+        <line number="11">gomban gyldan. þæt wæs god cyning.</line>
+        <line number="12">ðæm eafera wæs æfter cenned,</line>
+        <line number="13">geong in geardum, þone god sende</line>
+        <line number="14">folce to frofre; fyrenðearfe ongeat</line>
+        <line number="15">þæt hie ær drugon aldorlease</line>
+        <line number="16">lange hwile. Him þæs Liffrea,</line>
+        <line number="17">wuldres Wealdend, woroldare forgeaf;</line>
+        <line number="18">Beowulf wæs breme, blæd wide sprang,</line>
+        <line number="19">Scyldes eafera, scirelanda in.</line>
+        <line number="20">Swa sceal mon don!</line>
+      </section>
+      
+      <section number="3">
+        <line number="21">On his sucelhale, sele-drihten æghwylc</line>
+        <line number="22">oðer oþrum to, ændlifendum,</line>
+        <line number="23">to gefremmanne, þæt he mon wære:</line>
+        <line number="24">wyrce þære hyldo. Him on mod bearn</line>
+        <line number="25">þæt he healreced hatan wolde,</line>
+        <line number="26">mæl-ærn micel men gewyrcean,</line>
+        <line number="27">þone þe him God sealde, giofu on gyfan;</line>
+        <line number="28">ond he þæm folce foldbyldan cyðde,</line>
+        <line number="29">þær manna þrong monigfealdlice</line>
+        <line number="30">deope gedælde. Him on dreame bad</line>
+      </section>
+    </part>
+    
+    <part number="2" title="The Hall Heorot">
+      <section number="4">
+        <line number="31">Heorot hatte se þær hond-gesella</line>
+        <line number="32">hildedeorum, on handa beran</line>
+        <line number="33">mete ond meðo; se wæs mægenes streng,</line>
+        <line number="34">headogytas hwilum, hæðenne mægð</line>
+        <line number="35">sorgende þær, sarð gesette</line>
+        <line number="36">on heah gestaþole. Huru þæs hyðe</line>
+        <line number="37">mærðan sceolde, cyning on corðre</line>
+        <line number="38">leofum dohte. Ðær wæs ealuscerwen,</line>
+        <line number="39">duguða ond geogođa dream ætsomne,</line>
+        <line number="40">hleoðrende hleorþydu. Heorte ne sorgode</line>
+      </section>
+      
+      <section number="5">
+        <description>The monster Grendel emerges from the moors and attacks Heorot</description>
+        <line number="86">Þær grim ond gredie, godes yrre bær,</line>
+        <line number="87">feorhsecan flota, se þæ fram fen cwom,</line>
+        <line number="88">of morsele myndum; he mid mægne wearð</line>
+        <line number="89">godes ægyldanne. Grendel gongan sceal,</line>
+        <line number="90">deaðfæge deog; nales don wolde</line>
+        <line number="91">æfter heorte hygge, þæm þe hine mid adum scean,</line>
+        <line number="92">þær wearð Grendel gram, geong sunne grad,</line>
+        <line number="93">gongan eard unfær. Godes witu brægd,</line>
+        <line number="94">þære scean sceolde, scenden minne leofan.</line>
+      </section>
+    </part>
+    
+    <part number="3" title="Beowulf's Arrival">
+      <section number="6">
+        <description>Beowulf hears of Grendel's attacks and sails from Geatland to help King Hrothgar</description>
+        <line number="194">Hwæt, we have heard of the glory of the Spear-Danes,</line>
+        <line number="195">of their readiness to avenge the cruel attacks of Grendel,</line>
+        <line number="196">And Beowulf, of the Geats, brave and strong,</line>
+        <line number="197">decided to sail across the whale-road to help the Danish king,</line>
+        <line number="198">taking his warriors with him to face the monster.</line>
+      </section>
+      
+      <section number="7">
+        <description>Beowulf and his men arrive at Heorot</description>
+        <line number="238">Over the whale-road came the Geats' ship,</line>
+        <line number="239">swift and sea-worthy, bringing Beowulf and his band</line>
+        <line number="240">to the Danish shore, to King Hrothgar's hall,</line>
+        <line number="241">where Grendel's ravages had brought sorrow and despair.</line>
+        <line number="242">The hero stood bold before the Danish king,</line>
+        <line number="243">ready to do battle with the monster from the moor.</line>
+      </section>
+    </part>
+    
+    <part number="4" title="The Battle with Grendel">
+      <section number="8">
+        <description>Beowulf fights Grendel in Heorot</description>
+        <line number="710">Grendel gongan sceal,</line>
+        <line number="711">deaðfæge deog; nales don wolde</line>
+        <line number="712">æfter heorte hygge, þæm þe hine mid adum scean.</line>
+        <line number="713">Beowulf lét him þæs lices wealdend,</line>
+        <line number="714">wrace wræðes cyning. He mid þære winde fand</line>
+        <line number="715">deoplic þurhfær, deaðes nyðe.</line>
+      </section>
+      
+      <section number="9">
+        <description>Grendel's defeat and retreat to his lair</description>
+        <line number="816">Þær wæs sangeres cwyde, þær was sorg and weorðe,</line>
+        <line number="817">blóð bleted geond þæt hús, þær wæs gryreleoð strong,</line>
+        <line number="818">deoðlic dreamunge, deaðes hwilte sang.</line>
+        <line number="819">Grendel fleah geond þæt mor, morðres gefylled,</line>
+        <line number="820">æt his heorðe, heaþucræftig mon;</line>
+        <line number="821">he habban sceolde hygelace leofan.</line>
+      </section>
+    </part>
+    
+    <part number="5" title="Celebration and Grendel's Mother">
+      <section number="10">
+        <description>The Danes celebrate Beowulf's victory, but Grendel's mother seeks revenge</description>
+        <line number="1258">Þær wæs symbel in sele, sorhleas mægen,</line>
+        <line number="1259">dryhtne driþæne, dugude æt sete.</line>
+        <line number="1260">Drince we sceoldon, dræm wæs þær micel,</line>
+        <line number="1261">heard under heorðe, hwilum scylde þegn</line>
+        <line number="1262">wordum wrixlað. Þær wæs wlanc Beowulf,</line>
+        <line number="1263">wundrum micel, worðmyndum þah;</line>
+        <line number="1264">ac on morgenrice, mære cwom sece,</line>
+        <line number="1265">grim ond gyre, Grendeles modor.</line>
+      </section>
+    </part>
+  </poem>
+  
+  <translation>
+    <note>This XML file contains selected passages from Beowulf in Old English with line numbers. A complete translation would require substantially more lines. The sections above represent key moments in the epic poem.</note>
+  </translation>
+</beowulf>
