@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta charset="utf-8">
+<title>The Tale of Igor's Campaign / Слово о пълку Игоревѣ - Bilingual Edition</title>
+<style>
+  body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    line-height: 1.8;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #f5f5f0;
+    color: #333;
+  }
+  h1 {
+    text-align: center;
+    color: #8b4513;
+    font-size: 2.2em;
+    margin-bottom: 10px;
+    border-bottom: 3px solid #8b4513;
+    padding-bottom: 15px;
+  }
+  .subtitle {
+    text-align: center;
+    color: #666;
+    font-style: italic;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+  }
+  .metadata {
+    text-align: center;
+    color: #888;
+    font-size: 0.9em;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+  .metadata strong {
+    color: #666;
+  }
+
+  /* Toggle Controls */
+  .view-controls {
+    text-align: center;
+    margin: 20px 0;
+    padding: 15px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+  .view-controls button {
+    background: #8b4513;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 0 5px;
+    transition: background 0.3s;
+  }
+  .view-controls button:hover {
+    background: #654321;
+  }
+  .view-controls button.active {
+    background: #654321;
+    font-weight: bold;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+  }
+
+  /* Layout modes */
+  .content-wrapper {
+    background: white;
+    padding: 40px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    border-radius: 5px;
+  }
+
+  /* Side by side view */
+  .side-by-side {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    grid-auto-rows: auto;
+  }
+  .side-by-side .column {
+  .side-by-side .column:first-child {
+    border-right: 2px solid #ddd;
+  }
+  .column-header {
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #8b4513;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #ddd;
+  }
+
+  /* Single column view */
+  .single-column {
+    display: none;
+  }
+  .single-column.active {
+    display: block;
+  }
+
+  .section {
+    margin-bottom: 2em;
+  }
+  .section-title {
+    font-size: 1.2em;
+    color: #8b4513;
+    font-weight: bold;
+    margin: 1.5em 0 1em 0;
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid #ddd;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 1em;
+  }
+
+  p {
+    margin: 1em 0;
+    text-align: justify;
+    line-height: 1.7;
+    font-size: 0.95em;
+  }
+
+  /* Person names */
+  .pers {
+    color: #0b3d91;
+    font-weight: 600;
+    background: rgba(11, 61, 145, 0.08);
+    padding: 2px 4px;
+    border-radius: 3px;
+    cursor: help;
+  }
+  .pers:hover {
+    background: rgba(11, 61, 145, 0.15);
+  }
+
+  /* Place names */
+  .place {
+    color: #0b6b3d;
+    font-weight: 600;
+    background: rgba(11, 107, 61, 0.08);
+    padding: 2px 4px;
+    border-radius: 3px;
+    cursor: help;
+  }
+  .place:hover {
+    background: rgba(11, 107, 61, 0.15);
+  }
+
+  /* Organization/ethnic names */
+  .org, .ethnic {
+    color: #8b1f1f;
+    font-weight: 600;
+    background: rgba(139, 31, 31, 0.08);
+    padding: 2px 4px;
+    border-radius: 3px;
+    cursor: help;
+  }
+  .org:hover, .ethnic:hover {
+    background: rgba(139, 31, 31, 0.15);
+  }
+
+  /* Quoted speech */
+  .speech {
+    font-style: italic;
+    color: #2c3e50;
+    padding-left: 1.5em;
+    border-left: 3px solid #8b4513;
+    margin: 1em 0;
+    display: block;
+  }
+  .speech-inline {
+    font-style: italic;
+    color: #2c3e50;
+  }
+
+  /* Verse/poetry */
+  .verse {
+    font-style: italic;
+    padding: 1em 1.5em;
+    background: #f9f9f9;
+    border-left: 4px solid #8b4513;
+    margin: 1em 0;
+    line-height: 1.6;
+    font-size: 0.9em;
+  }
+  .verse-line {
+    display: block;
+    margin: 0.3em 0;
+  }
+
+  .legend {
+    margin: 20px 0;
+    padding: 15px;
+    background: #fff9e6;
+    border-left: 4px solid #8b4513;
+    border-radius: 5px;
+    font-size: 0.9em;
+  }
+  .legend h2 {
+    margin-top: 0;
+    color: #8b4513;
+    font-size: 1.1em;
+  }
+  .legend-item {
+    display: inline-block;
+    margin-right: 20px;
+    margin-bottom: 8px;
+  }
+  .legend-sample {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-weight: 600;
+    margin-right: 5px;
+  }
+
+  /* Russian text specific */
+  .russian-text p:first-of-type {
+    text-indent: 0;
+  }
+  .russian-text p {
+
+    text-align: left;
+    text-indent: 2em;
+  }
+  .russian-text .section-title + p {
+    text-indent: 0 !important;
+  }
+  .russian-text .section > p:first-of-type {
+    text-indent: 0 !important;
+  }
+  /* English text specific */
+  .english-text .first-letter {
+    font-size: 2.5em;
+    float: left;
+    line-height: 0.9;
+    margin: 0.05em 0.08em 0 0;
+    color: #8b4513;
+    font-weight: bold;
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+  .side-by-side {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    grid-auto-rows: auto;
+  }
+  .side-by-side .column {
+    padding: 0 15px;
+    display: contents;
+  }</style>
+</head>
+<body>
+<h1>The Tale of Igor's Campaign<br>Слово о пълку Игоревѣ</h1>
+<div class="subtitle">Bilingual TEI-Annotated Edition / Двуязычное издание с TEI-разметкой</div>
+<div class="metadata">
+  <strong>Old Russian Original:</strong> 12th century manuscript (Мусин-Пушкинская рукопись, XII век)<br>
+  <strong>English Translation:</strong> Helen de Vere Beauclerk (1918)<br>
+  <strong>TEI Encoding:</strong> Anton Smirnov (2025)
+</div>
+
+<div class="view-controls">
+  <button id="btn-sidebyside" class="active" onclick="setView('sidebyside')">Side by Side / Параллельно</button>
+  <button id="btn-russian" onclick="setView('russian')">Russian Only / Только русский</button>
+  <button id="btn-english" onclick="setView('english')">English Only / Только английский</button>
+</div>
+
+<div class="legend">
+  <h2>Annotation Legend / Легенда аннотации</h2>
+  <div class="legend-item">
+    <span class="legend-sample pers">Name / Имя</span> Personal names (persName)
+  </div>
+  <div class="legend-item">
+    <span class="legend-sample place">Place / Место</span> Geographic names (placeName)
+  </div>
+  <div class="legend-item">
+    <span class="legend-sample org">People / Народ</span> Ethnic groups (orgName/ethnic)
+  </div>
+</div>
+
+<!-- Side by Side View -->
+<div id="sidebyside-view" class="content-wrapper side-by-side">
+  <div class="column russian-text">
+    <div class="column-header">Old Russian Original / Древнерусский оригинал</div>
+
+    <div class="section">
+      <p>Слово о пълку <span class="pers" title="Князь Игорь">Игоревѣ</span>, <span class="pers">Игоря</span> сына <span class="pers">Святъславля</span>, внука <span class="pers">Ольгова</span>.</p>
+
+      <p>Не лѣпо ли ны бяшетъ, братіе, начяти старыми словесы трудныхъ повѣстій о пълку <span class="pers">Игоревѣ</span>, <span class="pers">Игоря</span> <span class="pers">Святъславлича</span>! Начати же ся тъй пѣсни по былинамь сего времени, а не по замышленію <span class="pers">Бояню</span>. <span class="pers">Боянъ</span> бо вѣщій, аще кому хотяше пѣснь творити, то растѣкашется мыслію по древу, сѣрымъ вълкомъ по земли, шизымъ орломъ подъ облакы.</p>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Поход</div>
+      <p>Почнемъ же, братіе, повѣсть сію отъ стараго <span class="pers">Владимера</span> до нынѣшняго <span class="pers">Игоря</span>; иже истягну умь крѣпостію своею, и поостри сердца своего мужествомъ, наплънився ратнаго духа, наведе своя храбрыя пълкы на землю <span class="org">Половѣцькую</span> за землю <span class="org">Руськую</span>.</p>
+
+      <p>Тогда <span class="pers">Игорь</span> възрѣ на свѣтлое солнце и видѣ отъ него тьмою вся своя воя прикрыты, и рече <span class="pers">Игорь</span> къ дружинѣ своей: "Братіе и дружино! Луцежъ бы потяту быти, неже полонену быти. А всядемъ, братіе, на свои бръзыя комони, да позримъ синего <span class="place">Дону</span>."</p>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Битва</div>
+      <p>Съ заранія въ пятъкъ потопташа поганыя пълкы <span class="org">Половецкыя</span>; и рассушясь стрѣлами по полю, помчаша красныя дѣвкы <span class="org">Половецкыя</span>, а съ ними злато, и паволокы, и драгыя оксамиты.</p>
+
+      <p>Другаго дни велми рано кровавыя зори свѣтъ повѣдаютъ; чръныя тучя съ моря идутъ, хотятъ прикрыти д̃ солнца. Се вѣтри, <span class="pers">Стрибожи</span> внуци, вѣютъ съ моря стрѣлами на храбрыя пълкы <span class="pers">Игоревы</span>!</p>
+
+      <p>"Яръ туре <span class="pers">Всеволодѣ</span>! стоиши на борони, прыщеши на вои стрѣлами, гремлеши о шеломы мечи харалужными."</p>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Поражение</div>
+      <p>Бишася день, бишася другый: третьяго дни къ полуднію падоша стязи <span class="pers">Игоревы</span>. Ту ся брата разлучиста на брезѣ быстрой <span class="place">Каялы</span>. Ту кроваваго вина недоста; ту пиръ докончаша храбріи <span class="org">Русичи</span>: сваты попоиша, а сами полегоша за землю <span class="org">Рускую</span>.</p>
+
+      <p>Ничить трава жалощами, а древо стугою къ земли преклонилось. Уже бо, братіе, невеселая година въстала, уже пустыни силу прикрыла.</p>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Злато слово Святъслава</div>
+      <p>Тогда Великій <span class="pers">Святславъ</span> изрони злато слово слезами смѣшено, и рече: "О моя сыновчя <span class="pers">Игорю</span> и <span class="pers">Всеволоде</span>! рано еста начата <span class="org">Половецкую</span> землю мечи цвѣлити, а себѣ славы искати. Но нечестно одолѣста: нечестно бо кровь поганую проліяста."</p>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Плачь Ярославны</div>
+      <p><span class="pers">Ярославна</span> рано плачетъ въ <span class="place">Путивлѣ</span> на забралѣ, аркучи: "О вѣтрѣ! вѣтрило! чему, Господине, насильно вѣеши? Чему мычеши <span class="org">Хиновьскыя</span> стрѣлкы на своею нетрудною крилцю на моея лады вои?"</p>
+
+      <p><span class="pers">Ярославна</span> рано плачеть <span class="place">Путивлю</span> городу на заборолѣ, аркучи: "О <span class="place">Днепре</span> словутицю! ты пробилъ еси каменныя горы сквозѣ землю <span class="org">Половецкую</span>. Ты лелѣялъ еси на себѣ <span class="pers">Святославли</span> носады до пълку <span class="pers">Кобякова</span>: възлелѣй, Господине, мою ладу къ мнѣ, а быхъ не слала къ нему слезъ на море рано."</p>
+
+      <p><span class="pers">Ярославна</span> рано плачетъ къ <span class="place">Путивлѣ</span> на забралѣ, аркучи: "Свѣтлое и тресвѣтлое слънце! всѣмъ тепло и красно еси: чему, Господине, простеръ горячую свою лучю на ладѣ вои?"</p>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Побѣгъ Игоря</div>
+      <p>Прысну море полунощи; идутъ сморци мьглами; <span class="pers">Игореви</span> Князю Богъ путь кажетъ изъ земли <span class="org">Половецкой</span> на землю <span class="org">Рускую</span>, къ отню злату столу.</p>
+
+      <p><span class="place">Донецъ</span> рече: "Княже <span class="pers">Игорю</span>! не мало ти величія, а <span class="pers">Кончаку</span> нелюбія, а <span class="org">Руской</span> земли веселіа."</p>
+
+      <p><span class="pers">Игорь</span> рече: "О, <span class="place">Донче</span>! не мало ти величія, лелѣявшу Князя на вълнахъ, стлавшу ему зелѣну траву на своихъ сребреныхъ брезѣхъ, одѣвавшу его теплыми мъглами подъ сѣнію зелену древу."</p>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Возвращение</div>
+      <p>Солнце свѣтится на небесѣ, <span class="pers">Игорь</span> Князь въ <span class="org">Руской</span> земли. Дѣвици поютъ на <span class="place">Дунаи</span>. Вьются голоси чрезъ море до <span class="place">Кіева</span>. <span class="pers">Игорь</span> ѣдетъ по <span class="place">Боричеву</span> къ <span class="place">Святѣй Богородици Пирогощей</span>.</p>
+
+      <p>Страны ради, грады веселі, пѣвше пѣснь старымъ Княземъ, а по томъ молодымъ. Пѣти слава <span class="pers">Игорю</span> <span class="pers">Святъславлича</span>. Буй туру <span class="pers">Всеволодѣ</span>, <span class="pers">Владимиіру Игоревичу</span>. Здрави Князи и дружина, побарая за христьяны на поганыя пълкы. Княземъ слава, а дружинѣ Аминь.</p>
+    </div>
+  </div>
+
+  <div class="column english-text">
+    <div class="column-header">English Translation (1918)</div>
+
+    <div class="section">
+      <p><span class="first-letter">H</span>EARKEN, my brethren, while I tell you the tale of <span class="pers" title="Prince Igor Svyatoslavich">Igor</span>, son of <span class="pers" title="Grand Prince of Kiev">Svyatoslav</span>. In the ancient way shall it be told, not after the fashion of the immortal <span class="pers" title="Ancient bard">Boyan</span> but in manner seemly, following the legends of the time.</p>
+
+      <p>For when <span class="pers" title="Ancient bard">Boyan</span> made a song for men to hear, his thoughts leaped swiftly like a squirrel in the tree-tops, or ran like a grey wolf over the plain or like an eagle, soared beneath the clouds.</p>
+    </div>
+
+    <div class="section">
+      <div class="section-title">The Campaign</div>
+      <p>Let me tell then, brethren, the tale of <span class="pers">Igor</span>. Behold his soul was filled with warlike spirit and mighty was his mind. His heart he whetted keen upon the stone of courage and naught would content him but that he should lead his valiant host to the land of the <span class="ethnic">Polovtsi</span>, to do honour to <span class="place">Russia</span> his country.</p>
+
+      <p>Then <span class="pers">Igor</span> cast his eyes upon the sun and saw that its splendour was dimmed, so that his men stood all veiled in shadow. But the soul of <span class="pers">Igor</span> was aflame and his thirst for adventure so great that he heeded not the evil omen.</p>
+
+      <p><span class="pers">Igor</span> cried to his warriors:</p>
+
+      <p class="speech">"Brothers and fellow warriors! It were better to die than to be oppressed. Mount, my warriors! Let us speed onward to the blue stream of the <span class="place">Don</span>."</p>
+    </div>
+
+    <div class="section">
+      <div class="section-title">The Battle</div>
+      <p>At break of day the battle commenced and by God's will the <span class="ethnic">Russians</span> prevailed. The foul swarms of the <span class="ethnic">Polovtsi</span> were crushed into the earth. Their sons were slain and their fair daughters captured and a great booty was taken from them.</p>
+
+      <p>On the morrow the dawn arose in bloodstained raiment to proclaim the day. Dark clouds rolled heavily up from the sea, laden with blue, quivering flashes of lightning. The rain fell like arrows from the sky and the winds, children of <span class="pers">Stribog</span>, blew as keen daggers.</p>
+
+      <p><span class="pers">Vsevolod</span>, fierce as a wild boar, stood foremost in the fray. Wherever shone the gold of his helmet there was the fiercest fighting and <span class="ethnic">Polovetsky</span> heads covered the ground.</p>
+    </div>
+
+    <div class="section">
+      <div class="section-title">The Defeat</div>
+      <p>The call of the trumpets, bidding the armies to retire, was heard at dawn, but only at noon on the third day was the banner of <span class="pers">Igor</span> lowered. The prince was taken prisoner. From a king's saddle he fell to that of a slave, and thus on the shores of the <span class="place">Kayala</span> were the brothers parted.</p>
+
+      <p>The grass wept for grief and the trees were bowed in mourning.</p>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Svyatoslav's Golden Word</div>
+      <p><span class="pers">Svyatoslav</span> the Golden-tongued, wept, saying:</p>
+
+      <p class="speech">"Alas! my children! Too early did ye wish for fame and too early journeyed ye forth, seeking to conquer the land of the <span class="ethnic">Polovtsi</span>! No honour could come of it. Your brave hearts were bound in iron and forged in the fire of valour, but ye have brought sorrow upon my silvered head."</p>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Yaroslavna's Lament</div>
+      <p><span class="pers">Yaroslavna</span>, the beloved of <span class="pers">Igor</span>, arose. She went upon the walls of <span class="place">Putivl</span> and wept.</p>
+
+      <p class="speech">"Wind, Sir Wind! Why art thou so keen? Why dost thou blow so cruelly upon my beloved? Cease the beating of thy great wings, Sir Wind!"</p>
+
+      <p>And <span class="pers">Yaroslavna</span> looked upon the river.</p>
+
+      <p class="speech">"O Mighty <span class="place">Dnieper</span>! Thou didst divide the stone mountains in the country of the <span class="ethnic">Polovtsi</span>! Bring my beloved back to me, Sir River! Ah! Woeful was the day when I first wept for him!"</p>
+
+      <p>And <span class="pers">Yaroslavna</span> looked upon the sun at dawn.</p>
+
+      <p class="speech">"Bright Sun! Thou art so warm and beautiful. To all men art thou kind. And yet, Sir Sun, thou didst punish my beloved with cruel flames."</p>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Igor's Escape</div>
+      <p>The sea rose up like a fountain of blue cloud and <span class="pers">Igor</span> knew it for a sign from heaven that, by God's will, the time had come for his escape.</p>
+
+      <p>At early dawn <span class="pers">Igor</span> reached the river <span class="place">Donets</span>. And the river spake to him, saying:</p>
+
+      <p class="speech">"Great, indeed, art thou, O Prince, and great is the hope of <span class="place">Russia</span>, but great also is the hatred of <span class="pers">Kontchak</span>!"</p>
+
+      <p><span class="pers">Igor</span> replied:</p>
+
+      <p class="speech">"But mighty art thou, <span class="place">Donets</span>! Thy waves carry the prince right nobly and by thy silver shores has he found a fair couch of green."</p>
+    </div>
+
+    <div class="section">
+      <div class="section-title">The Triumphant Return</div>
+      <p>What bliss was there in <span class="place">Russia</span>, brethren, when <span class="pers">Igor</span> reached the land of his fathers and knelt before the Holy Virgin at <span class="place">Pirogosk</span>! The sun shone more brightly. The maidens sang: <span class="speech-inline">"Joy! Joy!"</span> and the sound of their rejoicing was heard from the <span class="place">Danube</span> to <span class="place">Kiev</span>.</p>
+
+      <div class="verse">
+        <span class="verse-line">Honour to Prince <span class="pers">Igor</span>,</span>
+        <span class="verse-line">Honour to brave <span class="pers">Vsevolod</span>,</span>
+        <span class="verse-line">And honour to their children.</span>
+        <span class="verse-line">Honour to the princes</span>
+        <span class="verse-line">And honour to their warriors!</span>
+        <span class="verse-line">Amen.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Russian Only View -->
+<div id="russian-view" class="content-wrapper single-column russian-text">
+  <div class="column-header">Древнерусский оригинал</div>
+
+  <div class="section">
+    <p>Слово о пълку <span class="pers" title="Князь Игорь">Игоревѣ</span>, <span class="pers">Игоря</span> сына <span class="pers">Святъславля</span>, внука <span class="pers">Ольгова</span>.</p>
+
+    <p>Не лѣпо ли ны бяшетъ, братіе, начяти старыми словесы трудныхъ повѣстій о пълку <span class="pers">Игоревѣ</span>, <span class="pers">Игоря</span> <span class="pers">Святъславлича</span>! Начати же ся тъй пѣсни по былинамь сего времени, а не по замышленію <span class="pers">Бояню</span>. <span class="pers">Боянъ</span> бо вѣщій, аще кому хотяше пѣснь творити, то растѣкашется мыслію по древу, сѣрымъ вълкомъ по земли, шизымъ орломъ подъ облакы. Помняшеть бо речь първыхъ временъ усобіцѣ; тогда пущашеть ĩ соколовь на стадо лебедѣй, который дотечаше, та преди пѣсь пояше, старому <span class="pers">Ярославу</span>, храброму <span class="pers">Мстиславу</span>, иже зарѣза <span class="pers">Редедю</span> предъ пълкы <span class="org">Касожьскыми</span>, красному <span class="pers">Романови Святъславличю</span>. <span class="pers">Боянъ</span> же, братіе, не ĩ соколовь на стадо лебедѣй пущаше, нъ своя вѣщія пръсты на живая струны въскладаше; они же сами Княземъ славу рокотаху.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Поход</div>
+    <p>Почнемъ же, братіе, повѣсть сію отъ стараго <span class="pers">Владимера</span> до нынѣшняго <span class="pers">Игоря</span>; иже истягну умь крѣпостію своею, и поостри сердца своего мужествомъ, наплънився ратнаго духа, наведе своя храбрыя пълкы на землю <span class="org">Половѣцькую</span> за землю <span class="org">Руськую</span>. Тогда <span class="pers">Игорь</span> възрѣ на свѣтлое солнце и видѣ отъ него тьмою вся своя воя прикрыты, и рече <span class="pers">Игорь</span> къ дружинѣ своей: "Братіе и дружино! Луцежъ бы потяту быти, неже полонену быти. А всядемъ, братіе, на свои бръзыя комони, да позримъ синего <span class="place">Дону</span>." Спала Князю умь похоти, и жалость ему знаменіе заступи, искусити <span class="place">Дону</span> великаго. "Хощу бо, — рече, — копіе приломити конець поля <span class="org">Половецкаго</span> съ вами <span class="org">Русици</span>, хощу главу свою приложити, а любо испити шеломомь <span class="place">Дону</span>."</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Битва</div>
+    <p>Съ заранія въ пятъкъ потопташа поганыя пълкы <span class="org">Половецкыя</span>; и рассушясь стрѣлами по полю, помчаша красныя дѣвкы <span class="org">Половецкыя</span>, а съ ними злато, и паволокы, и драгыя оксамиты. Орьтъмами и япончицами, и кожухы начашя мосты мостити по болотомъ и грязивымъ мѣстомъ, и всякыми узорочьи <span class="org">Половѣцкыми</span>. Чрьленъ стягъ, бѣла хорюговь, чрьлена чолка, сребрено стружіе — храброму <span class="pers">Святьславличю</span>.</p>
+
+    <p>Другаго дни велми рано кровавыя зори свѣтъ повѣдаютъ; чръныя тучя съ моря идутъ, хотятъ прикрыти д̃ солнца: а въ нихъ трепещуть синіи мълніи, быти грому великому, иттѣ дождю стрѣлами съ <span class="place">Дону</span> великаго. Се вѣтри, <span class="pers">Стрибожи</span> внуци, вѣютъ съ моря стрѣлами на храбрыя пълкы <span class="pers">Игоревы</span>!</p>
+
+    <p>"Яръ туре <span class="pers">Всеволодѣ</span>! стоиши на борони, прыщеши на вои стрѣлами, гремлеши о шеломы мечи харалужными. Камо Туръ поскочяше, своимъ златымъ шеломомъ посвѣчивая, тамо лежатъ поганыя головы <span class="org">Половецкыя</span>."</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Поражение</div>
+    <p>Бишася день, бишася другый: третьяго дни къ полуднію падоша стязи <span class="pers">Игоревы</span>. Ту ся брата разлучиста на брезѣ быстрой <span class="place">Каялы</span>. Ту кроваваго вина недоста; ту пиръ докончаша храбріи <span class="org">Русичи</span>: сваты попоиша, а сами полегоша за землю <span class="org">Рускую</span>.</p>
+
+    <p>Ничить трава жалощами, а древо стугою къ земли преклонилось. Уже бо, братіе, невеселая година въстала, уже пустыни силу прикрыла. Въстала обида въ силахъ <span class="pers">Даждь-Божа</span> внука.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Злато слово Святъслава</div>
+    <p>Тогда Великій <span class="pers">Святславъ</span> изрони злато слово слезами смѣшено, и рече: "О моя сыновчя <span class="pers">Игорю</span> и <span class="pers">Всеволоде</span>! рано еста начата <span class="org">Половецкую</span> землю мечи цвѣлити, а себѣ славы искати. Но нечестно одолѣста: нечестно бо кровь поганую проліяста. Ваша храбрая сердца въ жестоцемъ харалузѣ скована, а въ буести закалена. Се ли створисте моей сребреней сѣдинѣ!"</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Плачь Ярославны</div>
+    <p><span class="pers">Ярославна</span> рано плачетъ въ <span class="place">Путивлѣ</span> на забралѣ, аркучи: "О вѣтрѣ! вѣтрило! чему, Господине, насильно вѣеши? Чему мычеши <span class="org">Хиновьскыя</span> стрѣлкы на своею нетрудною крилцю на моея лады вои? Мало ли ти бяшетъ горъ подъ облакы вѣяти, лелѣючи корабли на синѣ морѣ? Чему, Господине, мое веселіе по ковылію развѣя?"</p>
+
+    <p><span class="pers">Ярославна</span> рано плачеть <span class="place">Путивлю</span> городу на заборолѣ, аркучи: "О <span class="place">Днепре</span> словутицю! ты пробилъ еси каменныя горы сквозѣ землю <span class="org">Половецкую</span>. Ты лелѣялъ еси на себѣ <span class="pers">Святославли</span> носады до пълку <span class="pers">Кобякова</span>: възлелѣй, Господине, мою ладу къ мнѣ, а быхъ не слала къ нему слезъ на море рано."</p>
+
+    <p><span class="pers">Ярославна</span> рано плачетъ къ <span class="place">Путивлѣ</span> на забралѣ, аркучи: "Свѣтлое и тресвѣтлое слънце! всѣмъ тепло и красно еси: чему, Господине, простеръ горячую свою лучю на ладѣ вои? въ полѣ безводнѣ жаждею имь лучи съпряже, тугою имъ тули затче."</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Побѣгъ Игоря</div>
+    <p>Прысну море полунощи; идутъ сморци мьглами; <span class="pers">Игореви</span> Князю Богъ путь кажетъ изъ земли <span class="org">Половецкой</span> на землю <span class="org">Рускую</span>, къ отню злату столу. Погасоша вечеру зари: <span class="pers">Игорь</span> спитъ, <span class="pers">Игорь</span> бдитъ, <span class="pers">Игорь</span> мыслію поля мѣритъ отъ великаго <span class="place">Дону</span> до малаго <span class="place">Донца</span>.</p>
+
+    <p><span class="place">Донецъ</span> рече: "Княже <span class="pers">Игорю</span>! не мало ти величія, а <span class="pers">Кончаку</span> нелюбія, а <span class="org">Руской</span> земли веселіа." <span class="pers">Игорь</span> рече: "О, <span class="place">Донче</span>! не мало ти величія, лелѣявшу Князя на вълнахъ, стлавшу ему зелѣну траву на своихъ сребреныхъ брезѣхъ, одѣвавшу его теплыми мъглами подъ сѣнію зелену древу; стрежаше е гоголемъ на водѣ, чайцами на струяхъ, чрънядьми на ветрѣхъ."</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Возвращение</div>
+    <p>Солнце свѣтится на небесѣ, <span class="pers">Игорь</span> Князь въ <span class="org">Руской</span> земли. Дѣвици поютъ на <span class="place">Дунаи</span>. Вьются голоси чрезъ море до <span class="place">Кіева</span>. <span class="pers">Игорь</span> ѣдетъ по <span class="place">Боричеву</span> къ <span class="place">Святѣй Богородици Пирогощей</span>. Страны ради, грады веселі, пѣвше пѣснь старымъ Княземъ, а по томъ молодымъ. Пѣти слава <span class="pers">Игорю</span> <span class="pers">Святъславлича</span>. Буй туру <span class="pers">Всеволодѣ</span>, <span class="pers">Владимиіру Игоревичу</span>. Здрави Князи и дружина, побарая за христьяны на поганыя пълкы. Княземъ слава, а дружинѣ Аминь.</p>
+  </div>
+</div>
+
+<!-- English Only View -->
+<div id="english-view" class="content-wrapper single-column english-text">
+  <div class="column-header">English Translation (1918)</div>
+
+  <div class="section">
+    <p><span class="first-letter">H</span>EARKEN, my brethren, while I tell you the tale of <span class="pers" title="Prince Igor Svyatoslavich">Igor</span>, son of <span class="pers" title="Grand Prince of Kiev">Svyatoslav</span>. In the ancient way shall it be told, not after the fashion of the immortal <span class="pers" title="Ancient bard">Boyan</span> but in manner seemly, following the legends of the time.</p>
+
+    <p>For when <span class="pers" title="Ancient bard">Boyan</span> made a song for men to hear, his thoughts leaped swiftly like a squirrel in the tree-tops, or ran like a grey wolf over the plain or like an eagle, soared beneath the clouds. He sent forth falcons to pursue a flock of swans and the first swan that was captured sang its song, a song to <span class="pers" title="Yaroslav the Wise">Yaroslav</span> the Old, or to Mstislav the Brave who put Rededia to the sword before the tents of <span class="ethnic" title="Circassian tribe">Kassog</span>; a song again to Roman, the beauteous son of <span class="pers" title="Grand Prince of Kiev">Svyatoslav</span>. But <span class="pers" title="Ancient bard">Boyan</span>, brethren, did not in truth send forth falcons to pursue a flock of swans but with magic fingers he would touch the chords which of themselves would chant the princes' praise in sonorous music.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">The Campaign</div>
+    <p>Let me tell then, brethren, the tale of <span class="pers">Igor</span>. Behold his soul was filled with warlike spirit and mighty was his mind. His heart he whetted keen upon the stone of courage and naught would content him but that he should lead his valiant host to the land of the <span class="ethnic">Polovtsi</span>, to do honour to <span class="place">Russia</span> his country.</p>
+
+    <p>Then <span class="pers">Igor</span> cast his eyes upon the sun and saw that its splendour was dimmed, so that his men stood all veiled in shadow. But the soul of <span class="pers">Igor</span> was aflame and his thirst for adventure so great that he heeded not the evil omen.</p>
+
+    <p><span class="pers">Igor</span> cried to his warriors:</p>
+
+    <p class="speech">"Brothers and fellow warriors! It were better to die than to be oppressed. Mount, my warriors! Let us speed onward to the blue stream of the <span class="place">Don</span>. Have I not vowed to break my lance upon the uttermost ends of the <span class="ethnic">Polovetsky</span> plains? Though my head be brought even to the ground, yet would I drink in my helmet of the waters of the <span class="place">Don</span>!"</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">The Battle</div>
+    <p>At break of day the battle commenced and by God's will the <span class="ethnic">Russians</span> prevailed. The foul swarms of the <span class="ethnic">Polovtsi</span> were crushed into the earth. Their sons were slain and their fair daughters captured and a great booty was taken from them, of rich stuffs and gold and fine linen.</p>
+
+    <p>On the morrow the dawn arose in bloodstained raiment to proclaim the day. Dark clouds rolled heavily up from the sea, laden with blue, quivering flashes of lightning. The thunder clouds quickly hid the four suns and a terrible storm broke. The rain fell like arrows from the sky and the winds, children of <span class="pers">Stribog</span>, blew as keen daggers.</p>
+
+    <p><span class="pers">Vsevolod</span>, fierce as a wild boar, stood foremost in the fray. Wherever shone the gold of his helmet there was the fiercest fighting and <span class="ethnic">Polovetsky</span> heads covered the ground. His arrows showered upon the foe, his good sword crashed upon their helms.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">The Defeat</div>
+    <p>The call of the trumpets, bidding the armies to retire, was heard at dawn, but only at noon on the third day was the banner of <span class="pers">Igor</span> lowered. The prince was taken prisoner. From a king's saddle he fell to that of a slave, and thus on the shores of the <span class="place">Kayala</span> were the brothers parted. Great had been the feast and deep the drinking of the wine of blood! The <span class="ethnic">Russians</span> had in truth glutted their guests with wine. Nevertheless, many were dead in defence of <span class="place">Russia</span>. The grass wept for grief and the trees were bowed in mourning.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Svyatoslav's Golden Word</div>
+    <p><span class="pers">Svyatoslav</span> the Golden-tongued, wept, saying:</p>
+
+    <p class="speech">"Alas! my children! Too early did ye wish for fame and too early journeyed ye forth, seeking to conquer the land of the <span class="ethnic">Polovtsi</span>! No honour could come of it. Your brave hearts were bound in iron and forged in the fire of valour, but ye have brought sorrow upon my silvered head. The good wrought by my brother, the mighty, the rich <span class="pers">Yaroslav</span>, is no more."</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Yaroslavna's Lament</div>
+    <p><span class="pers">Yaroslavna</span>, the beloved of <span class="pers">Igor</span>, arose. She went upon the walls of <span class="place">Putivl</span> and wept.</p>
+
+    <p class="speech">"Wind, Sir Wind! Why art thou so keen? Why dost thou blow so cruelly upon my beloved? Cease the beating of thy great wings, Sir Wind! To send sorrow from the clouds is but a little thing to thee, who tosseth the boats on the blue sea so easily! Take not my joy from me! Blow it not away across the plain!"</p>
+
+    <p>And <span class="pers">Yaroslavna</span> looked upon the river.</p>
+
+    <p class="speech">"O Mighty <span class="place">Dnieper</span>! Thou didst divide the stone mountains in the country of the <span class="ethnic">Polovtsi</span>! Thou didst carry the ships of <span class="pers">Svyatoslav</span> to the armies of <span class="pers">Kobyak</span>. Bring my beloved back to me, Sir River! Ah! Woeful was the day when I first wept for him!"</p>
+
+    <p>And <span class="pers">Yaroslavna</span> looked upon the sun at dawn.</p>
+
+    <p class="speech">"Bright Sun! Thou art so warm and beautiful. To all men art thou kind. And yet, Sir Sun, thou didst punish my beloved with cruel flames. In the waterless fields thou didst parch his bowstrings so that they could not bend for thirst, and thou didst fill his quivers with sorrow. Ah! Woeful was the day when first I wept for him."</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Igor's Escape</div>
+    <p>Now shall we speak again of <span class="pers">Igor</span>, brethren, as he lay captive in the Polovetsky tents by the river. All day long he dreamed of freedom. His spirit slept not but was ever on the wing, measuring the distance between the <span class="place">Don</span> and the <span class="place">Donets</span>, which is the frontier stream of <span class="place">Russia</span>.</p>
+
+    <p>And behold after many days, the sea rose up like a fountain of blue cloud and <span class="pers">Igor</span> knew it for a sign from heaven that, by God's will, the time had come for his escape.</p>
+
+    <p>At early dawn <span class="pers">Igor</span> reached the river <span class="place">Donets</span>. And the river spake to him, saying:</p>
+
+    <p class="speech">"Great, indeed, art thou, O Prince, and great is the hope of <span class="place">Russia</span>, but great also is the hatred of <span class="pers">Kontchak</span>!"</p>
+
+    <p><span class="pers">Igor</span> replied:</p>
+
+    <p class="speech">"But mighty art thou, <span class="place">Donets</span>! Thy waves carry the prince right nobly and by thy silver shores has he found a fair couch of green. With soft mists hast thou hidden him beneath the green trees. Thy spirit sent forth ducks to save him on the lakes, gulls to protect him on the sea and swans in the air."</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">The Triumphant Return</div>
+    <p>What bliss was there in <span class="place">Russia</span>, brethren, when <span class="pers">Igor</span> reached the land of his fathers and knelt before the Holy Virgin at <span class="place">Pirogosk</span>! Henceforth did the warriors prosper and win great battles against the pagans. The sun shone more brightly. The maidens sang: <span class="speech-inline">"Joy! Joy!"</span> and the sound of their rejoicing was heard from the <span class="place">Danube</span> to <span class="place">Kiev</span>. The cities, too, and all the land, took up the joyful song. For all time shall it be sung:</p>
+
+    <div class="verse">
+      <span class="verse-line">Honour to Prince <span class="pers">Igor</span>,</span>
+      <span class="verse-line">Honour to brave <span class="pers">Vsevolod</span>,</span>
+      <span class="verse-line">And honour to their children.</span>
+      <span class="verse-line">Honour to the princes</span>
+      <span class="verse-line">And honour to their warriors!</span>
+      <span class="verse-line">Amen.</span>
+    </div>
+  </div>
+</div>
+
+<script>
+function setView(view) {
+  // Hide all views
+  document.getElementById('sidebyside-view').style.display = 'none';
+  document.getElementById('russian-view').classList.remove('active');
+  document.getElementById('english-view').classList.remove('active');
+
+  // Deactivate all buttons
+  document.querySelectorAll('.view-controls button').forEach(btn => {
+    btn.classList.remove('active');
+  });
+
+  // Show selected view and activate button
+  if (view === 'sidebyside') {
+    document.getElementById('sidebyside-view').style.display = 'grid';
+    document.getElementById('btn-sidebyside').classList.add('active');
+  } else if (view === 'russian') {
+    document.getElementById('russian-view').classList.add('active');
+    document.getElementById('btn-russian').classList.add('active');
+  } else if (view === 'english') {
+    document.getElementById('english-view').classList.add('active');
+    document.getElementById('btn-english').classList.add('active');
+  }
+}
+</script>
+
+</body>
+</html>
+

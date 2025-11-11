@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <style>
+      body {
+        font-family: Georgia, 'Times New Roman', serif;
+        background-color: #f8f5f2;
+        color: #333;
+        max-width: 700px;
+        margin: auto;
+        padding: 3em 1.5em;
+        line-height: 1.6;
+        position: relative;
+      }
+
+      h1 {
+        font-size: 2em;
+        margin-bottom: 1em;
+        border-bottom: 2px solid #ccc;
+        padding-bottom: 0.3em;
+      }
+
+      p {
+        margin-bottom: 2em;
+      }
+
+      a {
+        text-decoration: none;
+        color: #0066cc;
+        font-weight: bold;
+        transition: color 0.3s ease;
+      }
+
+      a:hover {
+        color: #004499;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      li {
+        background: #fff;
+        padding: 1em;
+        margin-bottom: 1em;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.06);
+        transition: transform 0.2s ease;
+      }
+
+      li:hover {
+        transform: translateY(-2px);
+      }
+
+      .no-link {
+        color: #aaa;
+        text-decoration: line-through;
+        cursor: not-allowed;
+        font-style: italic;
+      }
+
+      /* New CSS for the home icon */
+      .home-link {
+        position: absolute;
+        top: 1em;
+        left: -100px; /* Move it outside the left margin */
+      }
+
+      .home-link img {
+        width: 88px;
+        height: auto;
+        border-radius: 4px;
+        cursor: pointer;
+        background-color: #fff;
+        box-shadow: 0 0 5px rgba(0,0,0,0.2);
+      }
+
+      .home-link img:hover {
+        box-shadow: 0 0 8px rgba(0,0,0,0.3);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="tei-container"></div>
+    <script type="module">
+        async function loadTEI(fileName, targetSelector) {
+            const target = document.querySelector(targetSelector);
+            if (!target) throw new Error("Target element not found: " + targetSelector);
+
+            try {
+            const res = await fetch(`TEI/${fileName}`, { headers: { "Accept": "application/xml" } });
+            if (!res.ok) throw new Error(`HTTP ${res.status} for TEI/${fileName}`);
+            const xmlText = await res.text();
+
+            // Parse XML (TEI usually uses a default namespace)
+            // Parse XML and strip namespace manually to preserve all TEI tags
+            const parser = new DOMParser();
+            let xmlTextNoNS = xmlText.replace(/xmlns="[^"]+"/, "");  // 👈 去掉默认 namespace
+            const xml = parser.parseFromString(xmlTextNoNS, "text/xml");
+
+
+            // Basic parse error check
+            if (xml.getElementsByTagName("parsererror").length) {
+                throw new Error("XML parse error");
+            }
+
+            // Render TEI → HTML
+            const html = teiNodeToHTML(xml.documentElement);
+            target.innerHTML = "";
+            target.appendChild(html);
+            } catch (err) {
+            console.error(err);
+            // Fallback: show raw XML safely
+            target.textContent = "Failed to render TEI. Showing raw XML:\n\n" + (err?.message || "");
+            try {
+                const res2 = await fetch(`TEI/${fileName}`);
+                const raw = await res2.text();
+                target.textContent += "\n\n" + raw;
+            } catch {}
+            }
+        }
+
+        // Minimal TEI → HTML mapping
+        function teiNodeToHTML(node) {
+            // Text nodes
+            console.log("NODE:", node.localName);  // ← 这一行新加的，调试标签用（即嵌套的XML结构能否正确在网页端被渲染出来，这次解决了unclear不被显示为问号的情况）
+            if (node.outerHTML) console.log("RAW:", node.outerHTML);  // ← 这一行新加的，保留为调试模板，在大型 XML 项目中有助于排查 namespace 丢失，可注释掉
+            if (node.nodeType === Node.TEXT_NODE) {
+            return document.createTextNode(node.nodeValue);
+            }
+
+            // Ignore comments and processing instructions
+            if (node.nodeType !== Node.ELEMENT_NODE) {
+            return document.createDocumentFragment();
+            }
+
+            const name = node.localName; // works regardless of TEI namespace
+            const frag = document.createDocumentFragment();
+
+            // Helper to render children
+            const renderChildren = (parentEl = null) => {
+            const container = parentEl || document.createDocumentFragment();
+            for (const child of node.childNodes) {
+                container.appendChild(teiNodeToHTML(child));
+            }
+            return container;
+            };
+
+            // Map a few common TEI elements
+            switch (name) {
+            case "TEI":
+            case "teiCorpus": {
+                const wrapper = el("article", "tei-doc");
+                wrapper.appendChild(renderChildren());
+                return wrapper;
+            }
+            case "teiHeader": {
+                // Skip header in main view but keep title if present
+                const titleStmt = node.getElementsByTagNameNS("*", "titleStmt")[0];
+                const titleEl = titleStmt?.getElementsByTagNameNS("*", "title")[0];
+                if (titleEl) {
+                const h1 = el("h1");
+                h1.textContent = textContentDeep(titleEl);
+                return h1;
+                }
+                return document.createDocumentFragment();
+            }
+            case "text": {
+                const section = el("section");
+                section.appendChild(renderChildren());
+                return section;
+            }
+            case "body": {
+                const main = el("div", "tei-body");
+                main.appendChild(renderChildren());
+                return main;
+            }
+            case "div": {
+                const div = el("section", "tei-div");
+                // optional head within div
+                const head = node.getElementsByTagNameNS("*", "head")[0];
+                if (head) {
+                const h2 = el("h2");
+                h2.textContent = textContentDeep(head);
+                div.appendChild(h2);
+                }
+                for (const child of node.childNodes) {
+                if (child.nodeType === Node.ELEMENT_NODE && child.localName === "head") continue;
+                div.appendChild(teiNodeToHTML(child));
+                }
+                return div;
+            }
+            case "p": {
+                const p = el("p");
+                p.appendChild(renderChildren());
+                return p;
+            }
+            case "head": {
+                const h2 = el("h2");
+                h2.appendChild(renderChildren());
+                return h2;
+            }
+            case "lb": {
+                return el("br");
+            }
+            case "pb": {
+                const span = el("span", "tei-pb");
+                const n = node.getAttribute("n");
+                const facs = node.getAttribute("facs");
+                span.setAttribute("title", n ? `Page break: ${n}` : "Page break");
+                // 显示中性符号，避免和 verse bar 混淆
+                span.textContent = n ? ` [${n}] ` : " [pb] ";
+                return span;
+                }
+            case "note": {
+                const aside = el("aside", "tei-note");
+                aside.appendChild(renderChildren());
+                return aside;
+            }
+            case "hi": {
+                const rend = node.getAttribute("rend") || "";
+                const tag = /italic|em/.test(rend) ? "em" : /bold|strong/.test(rend) ? "strong" : "span";
+                const elx = el(tag);
+                elx.appendChild(renderChildren());
+                return elx;
+            }
+            case "q": {
+                const q = el("blockquote");
+                q.appendChild(renderChildren());
+                return q;
+            }
+            case "list": {
+                const listType = node.getAttribute("type") || "";
+                const ul = el(listType === "ordered" ? "ol" : "ul");
+                ul.appendChild(renderChildren());
+                return ul;
+            }
+            case "item": {
+                const li = el("li");
+                li.appendChild(renderChildren());
+                return li;
+            }
+            case "lg": {
+                const div = el("div", "tei-lg");
+                div.appendChild(renderChildren());
+                return div;
+            }
+            case "l": {
+                const p = el("p", "tei-line");
+                p.appendChild(renderChildren());
+                return p;
+            }
+            case "ref": {
+                const a = el("a");
+                const href = node.getAttribute("target") || node.getAttribute("url") || "#";
+                a.href = href;
+                a.appendChild(renderChildren());
+                return a;
+            }
+            case "gap": {
+                // 显示缺字符号，如 +++
+                const qty = node.getAttribute("quantity");
+                const span = el("span", "tei-gap");
+                const symbol = "+";
+                span.textContent = qty ? symbol.repeat(Number(qty)) : symbol.repeat(3);
+                return span;
+                }
+
+                case "supplied": {
+                    // 显示重建的内容 <...>
+                    const span = el("span", "tei-supplied");
+                    // 检查是否原本包含 <unclear>
+                    const hasUnclear = node.getElementsByTagName("unclear").length > 0;
+                    const text = textContentDeep(node);
+                    if (hasUnclear) {
+                        // 正常显示 <?ः>
+                        span.textContent = "<?" + text + ">";
+                    } else {
+                        // 没有unclear子节点时，保留原逻辑
+                        span.textContent = "<" + text + ">";
+                    }
+                    return span;
+                }
+
+
+                case "unclear": {
+                    const span = el("span", "tei-unclear");
+                    const text = textContentDeep(node);
+
+                    // console.log("UNCLEAR NODE:", text);  ← 这两行新加的，调试unclear标签在网页inspect部分的console里debug用
+                    // console.log("FINAL OUTPUT:", `<?${text}>`);  // ← 这两行新加的，仅为debug输出结果用
+
+                    if (node.parentNode && node.parentNode.localName === "supplied") {
+                        span.textContent = `<?${text}>`;
+                    } else {
+                        span.textContent = `<${text}>`;
+                    }
+
+                    return span;
+                }
+
+
+
+                case "facsimile":
+                case "surface": {
+                const div = el("div", "tei-facsimile");
+                div.appendChild(renderChildren());
+                return div;
+                }
+
+                case "graphic": {
+                const img = document.createElement("img");
+                const src = node.getAttribute("url") || node.getAttribute("target");
+                if (src) img.src = src;
+                img.alt = "Manuscript image";
+                img.className = "tei-graphic";
+                return img;
+                }
+
+                case "desc": 
+                case "sourceDesc": {
+                // 不显示任何文字
+                return document.createDocumentFragment(); // 忽略显示
+                }
+
+                case "listBibl": {
+                const section = el("section", "tei-bibl");
+                section.appendChild(renderChildren());
+                return section;
+                }
+
+                case "bibl": {
+                const p = el("p", "tei-bibl-item");
+                p.appendChild(renderChildren());
+                return p;
+                }
+
+                case "biblHead":  // ← 改成自定义标签名避免冲突
+                case "headBibl":  // 任选一个，下面两行加说明
+                    const h3 = el("h3");
+                    h3.appendChild(renderChildren());
+                    return h3;
+
+                case "title": {
+                    const level = node.getAttribute("level") || "";
+                    const type = node.getAttribute("type") || "";
+
+                    // 期刊名 / monograph → 斜体
+                    if (level === "j" || level === "m") {
+                        const em = el("em", "tei-title");
+                        em.appendChild(renderChildren()); // ✅ 保留子节点（允许嵌套）
+                        return em;
+                    }
+
+                    // 文章标题 → 加引号并保留子元素
+                    if (level === "a") {
+                        const span = el("span", "tei-title-article");
+                        span.appendChild(renderChildren()); // ✅ 改成 renderChildren()
+                        // 自动添加引号
+                        const quoted = el("span");
+                        quoted.textContent = "“";
+                        span.prepend(quoted);
+                        const quotedEnd = el("span");
+                        quotedEnd.textContent = "”";
+                        span.appendChild(quotedEnd);
+                        return span;
+                    }
+
+                    // 默认情况
+                    const span = el("span", "tei-title");
+                    span.appendChild(renderChildren());
+                    return span;
+                    }
+
+
+            default: {
+                // Unknown TEI element: render its children inline
+                return renderChildren();
+            }
+            }
+        }
+
+        // Utilities
+        function el(tag, className) {
+            const e = document.createElement(tag);
+            if (className) e.className = className;
+            return e;
+        }
+        function textContentDeep(node) {
+            let s = "";
+            const walker = document.createTreeWalker(node, NodeFilter.SHOW_TEXT, null);
+            let n;
+            while ((n = walker.nextNode())) s += n.nodeValue;
+            return s.trim();
+        }
+
+        // Call it with your file name and target container
+        // Example: a file at TEI/sample.xml → render into #tei-container
+        loadTEI("lingyue.xml", "#tei-container");
+    </script>
+
+    <style>
+    /* Minimal styling */
+    .tei-doc { line-height: 1.6; }
+    .tei-note { font-size: 0.95em; padding-left: 0.8rem; border-left: 3px solid #ddd; margin: 0.5rem 0; }
+    .tei-pb { opacity: 0.6; font-size: 0.9em; }
+    .tei-div { margin: 1rem 0; }
+    .tei-line { margin: 0; }
+    .tei-graphic {
+        display: block;
+        max-width: 100%;
+        margin: 1.5em auto;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+    .tei-bibl {
+        margin-top: 2em;
+        border-top: 2px solid #ccc;
+        padding-top: 1em;
+        }
+        .tei-bibl-item {
+        margin-left: 1em;
+        line-height: 1.6;
+        }
+        .tei-title {
+        font-style: italic;
+        }
+        .tei-title-article {
+        font-style: normal;
+        }
+    </style>
+
+  </body>
+</html>
