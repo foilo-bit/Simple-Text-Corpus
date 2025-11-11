@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Kalila wa Dimna — OCR (first pass)</title>
+        <respStmt>
+          <resp>OCR recognition with Kraken using arabic_best.mlmodel (first pass)</resp>
+        </respStmt>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Simple-Text-Corpus</publisher>
+        <date when="2025-11-11">2025-11-11</date>
+      </publicationStmt>
+      <sourceDesc>
+        <p>Source image: kalila wa dimna.webp (binarized: ocr/kalila_bin.png)</p>
+      </sourceDesc>
+    </fileDesc>
+  </teiHeader>
+  <text>
+    <body>
+      <div type="edition">
+  <p><![CDATA[
+5
+
+
+
+٥
+ 
+
+ 
+باباللبوه والاثنواروهومثلمزعم بادخالالضررعاالناسک
+له صرهع ثم انصرفت عزد لك وارد للب لهُ واعظزاجر
+عزلركابالطلم والعلزوازمزعیرع وفیهذا الباب
+رجرعزلا لماسرا لفر للماس وادخالب المکروه علیهمك
+نكف ر
+الا
+أر3
+قان الناسك والضیفت وهومنلابعاالضنایع نحةلوزخ
+
+هم وَلنقون بها والن ح کانب لهم منها المنفعه
+المو
+صنابعهنمالتی
+والمعیشه المعها فضبعو ماکانواحستون مماینکلفوب
+ولهاالَابِ داعیَة لملهمعل ذلك ومنعهم الخو بل
+
+وَالتفايُ فصداشرحالخمسه عشُرابا وبِألله النو
+
+2
+*ه 
+شهانوسروان بزرویة المطبب جال رلادالمهحل3
+و
+طلب كتاكلبله ودمنه وهذااولها  الحخمرلله
+ابب وعاینه الهالهكل
+الذيان مفانح كل
+الحبرکفاعله المبشمب فضبلة المله عمَادهُ مَابفريهم بضن وكع
+وا
+فی
+م
+4
+
+
+
+]]></p>
+      </div>
+    </body>
+  </text>
+</TEI>
