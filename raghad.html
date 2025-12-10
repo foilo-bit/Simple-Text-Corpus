@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Rare Quran Manuscript</title>
+<style>
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background-color: #f8f5f2;
+    color: #333;
+    max-width: 700px;
+    margin: auto;
+    padding: 3em 1.5em;
+    line-height: 1.6;
+  }
+
+  h1 {
+    font-size: 2em;
+    margin-bottom: 1em;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 0.3em;
+  }
+
+  h2 {
+    font-size: 1.4em;
+    margin-top: 2em;
+    margin-bottom: 0.5em;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 0.2em;
+  }
+
+  p {
+    margin-bottom: 1.5em;
+  }
+
+  .figure-text-container {
+      display: block;
+      margin-bottom: 2em;
+  }
+
+  .figure-text-container figure {
+      max-width: 300px;
+      margin: 0 auto 1em;
+  }
+
+  .figure-text-container figure img {
+      width: 100%;
+      height: auto;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+  }
+
+  .tei-doc { line-height: 1.6; }
+  .tei-div { margin: 1rem 0; }
+</style>
+</head>
+<body>
+  <div id="tei-container"></div>
+
+<script type="module">
+async function loadTEI(fileName, targetSelector) {
+    const target = document.querySelector(targetSelector);
+    if (!target) throw new Error("Target element not found: " + targetSelector);
+
+    try {
+        const res = await fetch(`TEI/${fileName}`, { headers: { "Accept": "application/xml" } });
+        if (!res.ok) throw new Error(`HTTP ${res.status} for TEI/${fileName}`);
+        const xmlText = await res.text();
+
+        const parser = new DOMParser();
+        const xml = parser.parseFromString(xmlText, "application/xml");
+
+        if (xml.getElementsByTagName("parsererror").length) {
+            throw new Error("XML parse error");
+        }
+
+        const html = teiNodeToHTML(xml.documentElement);
+        target.innerHTML = "";
+        target.appendChild(html);
+    } catch (err) {
+        console.error(err);
+        target.textContent = "Failed to render TEI. Showing raw XML:\n\n" + (err?.message || "");
+        try {
+            const res2 = await fetch(`TEI/${fileName}`);
+            const raw = await res2.text();
+            target.textContent += "\n\n" + raw;
+        } catch {}
+    }
+}
+
+function teiNodeToHTML(node) {
+    if (node.nodeType === Node.TEXT_NODE) return document.createTextNode(node.nodeValue);
+    if (node.nodeType !== Node.ELEMENT_NODE) return document.createDocumentFragment();
+
+    const name = node.localName;
+    const frag = document.createDocumentFragment();
+
+    const renderChildren = (parentEl = null) => {
+        const container = parentEl || document.createDocumentFragment();
+        for (const child of node.childNodes) {
+            container.appendChild(teiNodeToHTML(child));
+        }
+        return container;
+    };
+
+    switch (name) {
+        case "TEI":
+        case "teiCorpus": {
+            const wrapper = el("article", "tei-doc");
+            wrapper.appendChild(renderChildren());
+            return wrapper;
+        }
+        case "teiHeader": {
+            const titleStmt = node.getElementsByTagNameNS("*", "titleStmt")[0];
+            const titleEl = titleStmt?.getElementsByTagNameNS("*", "title")[0];
+            if (titleEl) {
+                const h1 = el("h1");
+                h1.textContent = textContentDeep(titleEl);
+                return h1;
+            }
+            return document.createDocumentFragment();
+        }
+        case "text": {
+            const section = el("section");
+            section.appendChild(renderChildren());
+            return section;
+        }
+        case "body": {
+            const main = el("div", "tei-body");
+            main.appendChild(renderChildren());
+            return main;
+        }
+        case "div": {
+            const div = el("section", "tei-div");
+
+            let figureEl = null;
+            let pEl = null;
+
+            for (const child of node.childNodes) {
+                if (child.nodeType !== Node.ELEMENT_NODE) continue;
+                if (child.localName === "figure") figureEl = teiNodeToHTML(child);
+                else if (child.localName === "p") pEl = teiNodeToHTML(child);
+                else div.appendChild(teiNodeToHTML(child));
+            }
+
+            if (figureEl && pEl) {
+                const wrapper = el("div", "figure-text-container");
+                wrapper.appendChild(figureEl);
+                wrapper.appendChild(pEl);
+                div.appendChild(wrapper);
+            } else {
+                if (figureEl) div.appendChild(figureEl);
+                if (pEl) div.appendChild(pEl);
+            }
+
+            return div;
+        }
+        case "p": {
+            const p = el("p");
+            p.appendChild(renderChildren());
+            return p;
+        }
+        case "figure": {
+            const figure = el("figure");
+            figure.appendChild(renderChildren());
+            return figure;
+        }
+        case "graphic": {
+            const img = el("img");
+            let url = node.getAttribute("url") || node.getAttribute("target");
+            if (url) url = url.replace(/^(\.\.\/)+/, "");
+            img.src = url;
+            img.alt = node.getAttribute("n") || node.getAttribute("xml:id") || "Manuscript image";
+            img.style.maxWidth = "100%";
+            return img;
+        }
+        case "head": {
+            const h2 = el("h2");
+            h2.appendChild(renderChildren());
+            return h2;
+        }
+        case "lb": return el("br");
+        case "hi": {
+            const rend = node.getAttribute("rend") || "";
+            const tag = /italic|em/.test(rend) ? "em" : /bold|strong/.test(rend) ? "strong" : "span";
+            const elx = el(tag);
+            elx.appendChild(renderChildren());
+            return elx;
+        }
+        default: return renderChildren();
+    }
+}
+
+function el(tag, className) {
+    const e = document.createElement(tag);
+    if (className) e.className = className;
+    return e;
+}
+
+function textContentDeep(node) {
+    let s = "";
+    const walker = document.createTreeWalker(node, NodeFilter.SHOW_TEXT, null);
+    let n;
+    while ((n = walker.nextNode())) s += n.nodeValue;
+    return s.trim();
+}
+
+loadTEI("raghad.xml", "#tei-container");
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="en">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>A digital transcription of Lucian's Piscator</title>
+                <respStmt>
+                    <resp>editor</resp>
+                    <name>Lisa Martingano</name>
+                </respStmt>
+            </titleStmt>
+            <publicationStmt>
+                <p>Published in the framework of "Manuscripts and Digital Humanities" course.</p>
+            </publicationStmt>
+            <sourceDesc>
+                <p>Transcribed from Vat. Urb. gr. 121 manuscript (f. 19v).</p>
+            </sourceDesc>
+        </fileDesc>
+    </teiHeader>
+
+    <text>
+        <body xml:lang="grc">
+            <head>
+                <hi rend="red">ἈΛΙΕῪΣ  Ἢ ἈΝΑΒΙΟΎΝΤΕΣ</hi>
+            </head>
+            <div type="section" n="1">
+                <head>ΣΩΚΡΑΤΗΣ</head>
+                <p>Βάλλε βάλλε τὸν κατάρατον ἀφθόνοις τοῖς λίθοις. ἐπί-
+                -βαλε τῶν βώλων· προσεπίβαλε καὶ τῶν ὀστράκων. 
+                παῖε τοῖς ξύλοις τὸν ἀλιτήριον. ὅρα μὴ διαφύγῃ. 
+                καὶ σὺ βάλλε, ὦ Πλάτων. καὶ σύ, ὦ Χρύσιππε. καὶ σὺ δὲ 
+                πάντες ἅμα ξυνασπίσωμεν ἐπ’ αὐτὸν. ὡς πήρη πή-</p>
+            </div>
+        </body>
+    </text> 
+</TEI>

@@ -1,0 +1,33 @@
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title><b><!Divan of Ibn Zuqqāˤa, Title Page with Ownership and Reader Notes></b></title>
+            </titleStmt>
+            <publicationStmt>
+                <p><!Not for distribution></p>
+            </publicationStmt>
+            <sourceDesc>
+                <p><!Transcribed from [DE-UBL] Vollers 562, Universitätsbibliothek Leipzig, Sammlung Refaiya></p>
+            </sourceDesc>
+        </fileDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <div><title>Title Statement</title></div>  
+            <p>Transcription: <i>Hād̠ā dīwān al-šayħ al-imām al-ˤālim <lb/> al-ˤallāma quṭb al-ˤārifīn wa-imām <lb/> al-muḥaqqaqīn wa-murabbī al-murīdīn <lb/> wa-mufīd al-ṭālibīn Abū <lb/> Isḥāq Ibrāhīm ibn <lb/> Burhān al-Dīn ibn <lb/> Muḥammad ibn Bahādur <lb/> ibn Aḥmad <lb/> ibn Zuqqā <lb/> ˤa <lb/> Aˤāda allāhu ˤalaynā min barakātihi wa-ˤalā al-muslimīn āmīn</i></p>  
+            <p>Translation: This is the divan of the sheikh, the learned imam, the most erudite, the highest-ranking among the experts, the imam of the certain, the teacher of the seekers, and the helper of the students </p>
+            <div><title>Note no. 1 (left, top)</title></div>  
+            <p>Transcription: <i>T̠umma malakahu al-faqīr al-ḥāǧǧ <lb/> Ibrāhīm ibn al-šayħ Muṣṭafā <lb/> ibn al-ḥāǧǧ Ibrāhīm al-ˤaṭṭār <lb/> fī niṣf Muḥarram sanat 1167</i></p> 
+            <p>Translation: It then came into the possession of the poor ḥāǧǧ Ibrāhīm ibn al-šayħ Muṣṭafā / ibn al-ḥāǧǧ Ibrāhīm al-ˤAṭṭār halfway through Muharram in the year 1167</p>  
+            <div><title>Note no. 2 (left, second from top)</title></div>  
+                <p>[unclear]</p> 
+            <div><title>Note no. 3 (left, third from top)</title></div>  
+                <p>Transcription: <i>Min kutub al-ˤabd al-muftaqir ilā raḥmat rabbihi <lb/> al-qadīr al-mannān al-Bahnasī ˤUt̠mān <lb/> ˤafā ˤanhu</i></p>  
+                <p>Translation: Among the books of the servant in need of God's blessings, the almighty, the merciful, ˤUt̠mān al-Bahnasī, may [God] have mercy on him</p> 
+            <div><title>Note no. 4 (left, bottom)</title></div> 
+                <p>Transcription: <i>Naẓara fīhi wa-taˀammala fī maˤānīhi <lb/> al-ˤabd al-faqīr al-muˤtarif <lb/> bi-l-d̠anb wa-l-taqṣīr <lb/> Husayn <lb/> ˤafā allāhu ˤanhu <lb/> wa-ˤan iħwānihi al-muslimīn <lb/> aǧmaˤīn āmīn</i></p> 
+                <p>Translation: Read and meditated upon by the poor servant, admitting to his sins and shortcomings, Husayn, may God have mercy on him and on his Muslim brothers, amen.</p>
+        </body>
+    </text>
+</TEI>

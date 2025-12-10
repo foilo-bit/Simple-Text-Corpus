@@ -1,0 +1,118 @@
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>Rare Quran Manuscript</title>
+            </titleStmt>
+            <publicationStmt>
+            </publicationStmt>
+            <sourceDesc>
+                 <msDesc>
+                    <msIdentifier>
+                        <idno type="Museum">21.149.5</idno>
+                    </msIdentifier>
+                    <!--  *************************************  <msContents>  ********************************* -->
+                    <msContents>
+                        <textLang mainLang="ar" otherLangs=""/>
+                        <msItem class="literary" ana="prose">
+                            <p>Arabic manuscript fragment written in black ink, containing prose text of uncertain origin.</p>
+                        </msItem>
+                    </msContents>
+                    <!--  *************************************  <physDesc>  ********************************* -->
+                    <physDesc>
+                        <objectDesc ana="manuscript.leaf">
+                            <supportDesc ana="paper">
+                                <support>
+                                    <p>Single leaf of brownish paper with visible deterioration and wormholes.</p>
+                                    <dimensions type="surface" unit="cm">
+                                        <height>28</height>
+                                        <width>20</width>
+                                    </dimensions>
+                                </support>
+                                <condition ana="fragment.single">
+                                    <p>Edges frayed and corners missing; ink remains clear and legible.</p>
+                                </condition>
+                            </supportDesc>
+                            <layoutDesc>
+                                <layout columns="1" writtenLines="18">
+                                    <p>Text written in a single column in large Arabic script.</p>
+                                </layout>
+                            </layoutDesc>
+                        </objectDesc>
+                        <!--  *************************************  <handDesc>  ********************************* -->
+                        <handDesc>
+                            <handNote ana="ink.handwritten">
+                                <p>Black ink in early Arabic calligraphic script.</p>
+                            </handNote>
+                        </handDesc>
+                        <!--  *************************************  <decoDesc>  ********************************* -->
+                        <decoDesc>
+                            <decoNote>
+                                <ab>Red diacritical marks used occasionally.</ab>
+                                <locus>Throughout text</locus>
+                            </decoNote>
+                        </decoDesc>
+                    </physDesc>
+                    <history>
+                        <summary>
+                            <rs>Likely medieval Arabic manuscript fragment, possibly of literary or religious content.</rs>
+                        </summary>
+                        <provenance>
+                            <placeName>Private Collection / Casey Museum</placeName>
+                        </provenance>
+                    </history>
+                </msDesc>
+            </sourceDesc>
+        </fileDesc> 
+    </teiHeader>
+
+    <text>
+        <body>
+            <div type="edition" subtype="diplomatic" ana="b1">
+                <figure>
+                    <graphic url="assets/image0.jpg" mimeType="image/jpeg"/>
+                    <figDesc>
+                        Holy Quran, handwritten.
+                        Very old, possibly over 280 years. No date of writing is indicated. Its cover is old, and the pages are bound with threads.
+                        Rare. 
+                    </figDesc>
+                </figure>
+
+                <div>
+                 <h2>Transliteration (Arabic)</h2>
+                <p xml:lang="ar">
+                    سورة البقرة مدنية وهي مئتان وثمانون
+                    بسم الله الرحمن الرحيم
+                    الٓمٓ ذَٰلِكَ ٱلۡكِتَٰبُ لَا رَيۡبَۛ فِيهِۛ هُدٗى لِّلۡمُتَّقِينَ ٱلَّذِينَ يُؤۡمِنُونَ بِٱلۡغَيۡبِ وَيُقِيمُونَ ٱلصَّلَوٰةَ وَمِمَّا رَزَقۡنَٰهُمۡ يُنفِقُونَ وَٱلَّذِينَ يُؤۡمِنُونَ بِمَآ أُنزِلَ إِلَيۡكَ وَمَآ أُنزِلَ مِن قَبۡلِكَ وَبِٱلۡأٓخِرَةِ هُمۡ يُوقِنُونَ أُوْلَٰٓئِكَ عَلَىٰ هُدٗى مِّن رَّبِّهِمۡۖ وَأُوْلَٰٓئِكَ هُمُ ٱلۡمُفۡلِحُونَ
+                    وست آيات
+                </p>
+                </div>
+                <div>
+                <h2>Transliteration (English)</h2>
+                <p xml:lang="en">
+                Surah Al-Baqarah, Medinan, and it has 280 [verses].
+
+                In the name of Allah, the Most Gracious, the Most Merciful.
+
+                Alif Lam Meem.
+                This is the Book about which there is no doubt, a guidance for those who are conscious of Allah —
+                Who believe in the unseen, establish prayer, and spend out of what We have provided them;
+                And who believe in what has been revealed to you, and what was revealed before you, and are certain of the Hereafter.
+                Those are upon guidance from their Lord, and it is they who will be successful.
+                </p>
+                </div>
+
+
+            </div>
+        </body>
+    </text>
+
+    <listBibl>
+  <head>BIBLIOGRAPHY</head>
+  <bibl>
+    https://atharsale.com // ItemNo : 1876
+    <title level="a" type="article">A Rare Quran Manuscript.
+    </title>
+  </bibl>
+</listBibl>
+</TEI>
