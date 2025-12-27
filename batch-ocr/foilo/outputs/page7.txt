@@ -1,0 +1,4 @@
+﻿Source image: page7.png
+
+Note: OCR has not been run in this environment because a recognition model could not be downloaded (network or rate-limit). To run full OCR locally: 1) activate your kraken venv; 2) run kraken get <model-id> (e.g. en_best or arabic_best as needed); 3) run ash batch_ocr.sh or kraken -i images/page7.png outputs/page7.txt ocr -m <model-id>.
+
