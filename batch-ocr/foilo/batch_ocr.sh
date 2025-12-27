@@ -32,10 +32,12 @@ for src in "${IMAGES[@]}"; do
   echo -e "\n[$n] Processing: $src"
   fname="$(basename "$src")"
 
-  # run kraken OCR: input -> outputs/<basename>.txt
+  # choose model: environment variable MODEL overrides default
+  MODEL="${MODEL:-catmus-print-tiny.mlmodel}"
+  # run kraken pipeline: binarize -> segment -> ocr
   out="outputs/${fname%.*}.txt"
-  echo "Running kraken on $src -> $out"
-  "$KRKN" -i "$src" "$out" ocr -m en_best.mlmodel || { echo "kraken failed on $fname" >> logs/errors.log; continue; }
+  echo "Running binarize+segment+ocr on $src -> $out (model=$MODEL)"
+  "$KRKN" -i "$src" "$out" binarize segment ocr -m "$MODEL" || { echo "kraken failed on $fname" >> logs/errors.log; continue; }
   echo "Done: $out"
 done
 
