@@ -1,8 +1,8 @@
 Batch OCR for Foilo
 
 Contents:
-- `batch_ocr.sh`: Bash script that downloads a set of images and runs Kraken OCR on each to create `.txt` outputs in `outputs/`.
-- `images/`: directory (created by script) that will hold downloaded or copied images.
+- `batch_ocr.sh`: Bash script that processes image files placed in `images/` and runs Kraken OCR on each to create `.txt` outputs in `outputs/`.
+- `images/`: directory (created by script) that will hold the input images to be OCR'd (place any uploaded images here).
 - `outputs/`: directory (created by script) that will contain OCR text outputs.
 
 Usage:
